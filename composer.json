@@ -1,0 +1,23 @@
+{
+    "name": "dofinity/pelecard",
+    "type": "library",
+    "description": "PHP Library for integrating Pelecard based payments.",
+    "keywords": ["PHP", "payment", "commerce"],
+    "homepage": "http://dofinity.com/pelecard",
+    "license": "GPL2",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "authors": [
+        {
+            "name": "Peleg Rabinowitz",
+            "email": "peleg@dofinity.com",
+            "homepage": "https://github.com/dofinity"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pelecard\\": "src/Pelecard"
+        }
+    }
+}
