@@ -5,6 +5,7 @@
     "keywords": ["PHP", "payment", "commerce"],
     "homepage": "http://dofinity.com/pelecard",
     "license": "GPL2",
+    "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
     },
