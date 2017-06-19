@@ -2,14 +2,14 @@
 
 namespace Pelecard\Payment;
 
+/**
+ * @file Payment class - allows to perform pelecard iframe payments.
+ */
+
 use Pelecard\PaymentRequest\PaymentRequest;
 use GuzzleHttp\Client;
 
-/**
- * Class Payment - allows to perform pelecard iframe payments.
- * @package Pelecard\Payment
- */
-class Payment {
+class Payment implements PayableInterface {
 
   const GATEWAY_BASE_URI = 'https://gateway20.pelecard.biz/PaymentGW/';
   const PAYMENT_INIT_URI = 'init';
@@ -54,16 +54,10 @@ class Payment {
     return $response->getBody()->getContents();
   }
 
-  /**
-   *
-   */
   public function ValidatePayment() {
 
   }
 
-  /**
-   * @param $TransactionCode
-   */
   public function GetShvaCodeMessage($TransactionCode) {
 
   }
