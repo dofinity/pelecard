@@ -2,7 +2,7 @@
 /**
  * @file Caption Sets allow to customize payment form field captions.
  */
-namespace Pelecard\Payment;
+namespace Pelecard;
 
 
 class CaptionSet {

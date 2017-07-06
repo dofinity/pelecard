@@ -2,91 +2,91 @@
 /**
  * @file PaymentRequest class - defines the structure and defaults for pelecard payment request.
  */
-namespace Pelecard\PaymentRequest;
+namespace Pelecard;
 
 class PaymentRequest implements \JsonSerializable {
 
   // Authentication info
-  private $terminal;
-  private $user;
-  private $password;
+  protected $terminal;
+  protected $user;
+  protected $password;
 
   // Redirect URLs
-  private $GoodURL;
-  private $ErrorURL;
-  private $CancelURL;
+  protected $GoodURL;
+  protected $ErrorURL;
+  protected $CancelURL;
 
   // Currency
-  private $ActionType;
-  private $Currency;
+  protected $ActionType;
+  protected $Currency;
 
   // Total
-  private $Total;
-  private $FreeTotal;
+  protected $Total;
+  protected $FreeTotal;
 
   // Result and Feedback
-  private $resultDataKeyName;
-  private $ServerSideGoodFeedbackURL;
-  private $ServerSideErrorFeedbackURL;
+  protected $resultDataKeyName;
+  protected $ServerSideGoodFeedbackURL;
+  protected $ServerSideErrorFeedbackURL;
 
   // Notification emails
-  private $NotificationGoodMail;
-  private $NotificationErrorMail;
-  private $NotificationFailMail;
+  protected $NotificationGoodMail;
+  protected $NotificationErrorMail;
+  protected $NotificationFailMail;
 
   // Tokens
-  private $CreateToken;
-  private $TokenForTerminal;
-  private $TokenCreditCardDigits;
+  protected $CreateToken;
+  protected $TokenForTerminal;
+  protected $TokenCreditCardDigits;
 
   // Form options
-  private $Language;
-  private $CardHolderName;
-  private $CustomerIdField;
-  private $Cvv2Field;
-  private $EmailField;
-  private $TelField;
-  private $SplitCCNumber;
+  protected $Language;
+  protected $CardHolderName;
+  protected $CustomerIdField;
+  protected $Cvv2Field;
+  protected $EmailField;
+  protected $TelField;
+  protected $SplitCCNumber;
 
-  private $IsToken;
-  private $FeedbackOnTop;
-  private $FeedbackDataTransferMethod;
-  private $UseBuildInFeedbackPage;
+  protected $IsToken;
+  protected $FeedbackOnTop;
+  protected $FeedbackDataTransferMethod;
+  protected $UseBuildInFeedbackPage;
 
   // Payment installments
-  private $MaxPayments;
-  private $MinPayments;
-  private $MinPaymentsForCredit;
-  private $DisabledPaymentNumbers; // comma separated string of values
-  private $FirstPayment; // the amount is in agorot/cents
+  protected $MaxPayments;
+  protected $MinPayments;
+  protected $MinPaymentsForCredit;
+  protected $DisabledPaymentNumbers; // comma separated string of values
+  protected $FirstPayment; // the amount is in agorot/cents
 
   // Order identification
-  private $AuthNum;
-  private $ShopNo;
-  private $ParamX;
-  private $ShowXParam;
-  private $AddHolderNameToXParam;
-  private $UserKey;
+  protected $AuthNum;
+  protected $ShopNo;
+  protected $ParamX;
+  protected $ShowXParam;
+  protected $AddHolderNameToXParam;
+  protected $UserKey;
 
   // Display options
-  private $SetFocus;
-  private $CssURL;
-  private $TopText;
-  private $BottomText;
-  private $LogoURL;
-  private $ShowConfirmationCheckbox;
-  private $TextOnConfirmationBox;
-  private $ConfirmationLink;
-  private $HiddenPelecardLogo;
-  private $AllowedBINs;
-  private $BlockedBINs;
-  private $ShowSubmitButton;
-  private $AccessibilityMode;
-  private $TakeIshurPopUp;
-  private $SupportedCards; // Supported credit cards
+  protected $SetFocus;
+  protected $CssURL;
+  protected $TopText;
+  protected $BottomText;
+  protected $LogoURL;
+  protected $ShowConfirmationCheckbox;
+  protected $TextOnConfirmationBox;
+  protected $ConfirmationLink;
+  protected $HiddenPelecardLogo;
+  protected $AllowedBINs;
+  protected $BlockedBINs;
+  protected $ShowSubmitButton;
+  protected $AccessibilityMode;
+  protected $TakeIshurPopUp;
+  protected $SupportedCards; // Supported credit cards
 
   // Custom field captions
-  private $CaptionSet;
+  protected $CaptionSet;
 
   /**
    * Payment constructor.
@@ -166,38 +166,6 @@ class PaymentRequest implements \JsonSerializable {
     $this->HiddenPelecardLogo = $HiddenPelecardLogo;
     $this->AccessibilityMode = $AccessibilityMode;
     $this->TakeIshurPopUp = $TakeIshurPopUp;
-  }
-
-  /**
-   * @param string $ParamX
-   */
-  public function setParamX($ParamX) {
-    $this->ParamX = $ParamX;
-  }
-
-  /**
-   * Sets the supported credit card types.
-   * @param mixed $SupportedCards
-   */
-  public function setSupportedCards($SupportedCards) {
-    $this->SupportedCards = $SupportedCards;
-  }
-
-  /**
-   * Sets custom captions for payment form fields.
-   * @param mixed $CaptionSet
-   */
-  public function setCaptionSet($CaptionSet) {
-    $this->CaptionSet = $CaptionSet;
-  }
-
-  /**
-   * If set to True, iframe integration will assume the iframe redirects directly
-   * to the payment site, i.e. the parent window.
-   * @param string $FeedbackOnTop
-   */
-  public function setFeedbackOnTop($FeedbackOnTop) {
-    $this->FeedbackOnTop = $FeedbackOnTop ? 'True' : 'False';
   }
 
   /**
