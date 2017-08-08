@@ -16,6 +16,7 @@ class PaymentResponse implements \JsonSerializable {
   protected $TotalX100;
 
   const USER_INPUT_ERROR_CODES = ['006', '033', '036'];
+  const TIMEOUT_ERROR_CODE = '301';
 
   /**
    * PaymentResponse constructor.
@@ -74,8 +75,7 @@ class PaymentResponse implements \JsonSerializable {
    * @return bool
    */
   private function isUserInputError() {
-    /* @todo consider adding 039 which stand for a bad check digit in the credit card number */
-    return in_array($this->PelecardStatusCode, self::USER_INPUT_ERROR_CODES);
+    return static::isUserInputErrorByCode($this->PelecardStatusCode);
   }
 
   /**
@@ -90,12 +90,30 @@ class PaymentResponse implements \JsonSerializable {
   }
 
   /**
+   * Returns TRUE if the given error code is a timeout error (301)
+   *
+   * @return bool
+   */
+  public function isTimeoutError() {
+    return static::isTimeoutErrorCode($this->PelecardStatusCode);
+  }
+
+  /**
+   * Returns TRUE if the given error code is a timeout error (301)
+   *
+   * @return bool
+   */
+  public static function isTimeoutErrorCode($errorCode) {
+    return ($errorCode == self::TIMEOUT_ERROR_CODE);
+  }
+
+  /**
    * Returns TRUE if retries are allowed
    *
    * @return bool
    */
   public function isRetriesAllowed() {
-    return ($this->PelecardStatusCode != '000' && !$this->isUserInputError());
+    return ($this->PelecardStatusCode != '000' && !$this->isUserInputError() && !$this->isTimeoutError());
   }
 
   /**
