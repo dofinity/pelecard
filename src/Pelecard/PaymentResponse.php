@@ -15,7 +15,8 @@ class PaymentResponse implements \JsonSerializable {
   protected $ConfirmationKey;
   protected $TotalX100;
 
-  const USER_INPUT_ERROR_CODES = ['006', '033', '036'];
+  // @todo: Convert back to constant arrays when PHP 5.6 arrives. Possibly convert to define when PHP 7 Arrives.
+  public static $USER_INPUT_ERROR_CODES = ['006', '033', '036'];
   const TIMEOUT_ERROR_CODE = '301';
 
   /**
@@ -86,7 +87,7 @@ class PaymentResponse implements \JsonSerializable {
    */
   public static function isUserInputErrorByCode($errorCode) {
     /* @todo consider adding 039 which stand for a bad check digit in the credit card number */
-    return in_array($errorCode, self::USER_INPUT_ERROR_CODES);
+    return in_array($errorCode, self::$USER_INPUT_ERROR_CODES);
   }
 
   /**

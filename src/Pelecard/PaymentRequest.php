@@ -169,6 +169,38 @@ class PaymentRequest implements \JsonSerializable {
   }
 
   /**
+   * @param string $ServerSideGoodFeedbackURL
+   *
+   * @return \Pelecard\PaymentRequest $ServerSideGoodFeedbackURL
+   */
+  public function setServerSideGoodFeedbackURL($ServerSideGoodFeedbackURL) {
+    $this->ServerSideGoodFeedbackURL = $ServerSideGoodFeedbackURL;
+    return $this;
+  }
+
+  /**
+   * @param string $ServerSideErrorFeedbackURL
+   *
+   * @return \Pelecard\PaymentRequest $ServerSideErrorFeedbackURL
+   */
+  public function setServerSideErrorFeedbackURL($ServerSideErrorFeedbackURL) {
+    $this->ServerSideErrorFeedbackURL = $ServerSideErrorFeedbackURL;
+    return $this;
+  }
+
+  /**
+   * This method should be used in order to enable test mode.
+   * When enabled - all transactions to Pelecard will pass.
+   * Note: Should never be enabled on production!!
+   *
+   * @param $enable
+   * @todo Note that AuthNum don't have setter at the moment, therefore we are not thinking about the "real" AuthNum
+   */
+  public function enableTestMode($enable) {
+    $this->AuthNum = $enable ? '1234567' : NULL;
+  }
+
+  /**
    * Return JSON serialized data
    * @return array
    */
