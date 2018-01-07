@@ -179,7 +179,7 @@ class PelecardTransaction {
       2 => t('Visa Cal'),
       3 => t('Diners'),
       4 => t('American Express'),
-      5 => t('Leumi card'),
+      6 => t('Leumi card'),
     ];
 
     return $map[$num];
