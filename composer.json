@@ -4,7 +4,7 @@
     "description": "PHP Library for integrating Pelecard based payments.",
     "keywords": ["PHP", "payment", "commerce"],
     "homepage": "http://dofinity.com/pelecard",
-    "license": "GPL2",
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
