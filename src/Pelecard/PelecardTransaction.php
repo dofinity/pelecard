@@ -175,11 +175,11 @@ class PelecardTransaction {
    */
   private function getClearerNamebyNum($num) {
     $map = [
-      1 => t('Isracard'),
-      2 => t('Visa Cal'),
-      3 => t('Diners'),
-      4 => t('American Express'),
-      6 => t('Leumi card'),
+      1 => 'Isracard',
+      2 => 'Visa Cal',
+      3 => 'Diners',
+      4 => 'American Express',
+      6 => 'Leumi card',
     ];
 
     return $map[$num];
