@@ -7,7 +7,11 @@
     "license": "MIT",
     "minimum-stability": "dev",
     "require": {
+        "php": "^5.6 || ^7.0",
         "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=5.7.27"
     },
     "authors": [
         {
@@ -20,5 +24,16 @@
         "psr-4": {
             "Pelecard\\": "src/Pelecard"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pelecard\\": "test/Pelecard"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@phpunit"
+        ],
+        "phpunit": "phpunit --whitelist src ./test"
     }
 }
