@@ -88,6 +88,9 @@ class PaymentRequest implements \JsonSerializable {
   // Custom field captions
   protected $CaptionSet;
 
+  // UserData. Free text fields. These fields are not sent to SHVA. These fields return with transaction details
+  protected $UserData;
+
   /**
    * Payment constructor.
    *
@@ -198,6 +201,26 @@ class PaymentRequest implements \JsonSerializable {
    */
   public function enableTestMode($enable) {
     $this->AuthNum = $enable ? '1234567' : NULL;
+  }
+
+  /**
+   * Sets UserData which described as "Free text fields" in manual.
+   * These fields are not sent to SHVA.
+   * These fields return with transaction details.
+   *
+   * @param string $fieldName User field name. Possible values are UserData1, UserData2, ...UserData15
+   * @param string $data      Data itself
+   * @throws \InvalidArgumentException
+   */
+  public function setUserData($fieldName, $data) {
+    if (!is_string($fieldName) || preg_match("/^UserData([1-9]|1[0-5])$/", $fieldName) !== 1) {
+      throw new \InvalidArgumentException('Invalid `$fieldName`. Keys UserData1, UserData2, ...UserData15 are allowed');
+    }
+    if (!is_string($data) && $data !== null) {
+      throw new \InvalidArgumentException('Invalid `$data`. Data must be string or `null` when you need to unset it');
+    }
+    if (!is_array($this->UserData)) $this->UserData = [];
+    $this->UserData[$fieldName] = $data;
   }
 
   /**
