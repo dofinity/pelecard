@@ -29,6 +29,7 @@ class PelecardTransaction {
   private $CardHolderID; // OwnerIdNum
   private $FirstPaymentTotal;
   private $FixedPaymentTotal;
+  private $UserData; // UserData
 
   /**
    * PelecardTransaction constructor.
@@ -50,6 +51,9 @@ class PelecardTransaction {
     if (!empty($transaction_result->ResultData)) {
       $this->extractPropertiesFromResponse($transaction_result->ResultData);
     }
+    if (!empty($transaction_result->UserData)) {
+      $this->extractFieldsFromUserData($transaction_result->UserData);
+    }
   }
 
   /**
@@ -65,6 +69,17 @@ class PelecardTransaction {
       if (isset($response->{$property_name})) {
         $this->{$property_name} = $response->{$property_name};
       }
+    }
+  }
+
+  /**
+   * Helper function to extract user fields from the transaction UserData.
+   * @param $userData
+   */
+  private function extractFieldsFromUserData($userData) {
+    $this->UserData = [];
+    foreach($userData as $fieldName => $data) {
+      $this->UserData[$fieldName] = $data;
     }
   }
 
@@ -183,6 +198,14 @@ class PelecardTransaction {
     ];
 
     return $map[$num];
+  }
+
+  /**
+   * Returns UserData if it has been specified in PaymentRequest
+   * @return array|null
+   */
+  public function getUserData() {
+    return $this->UserData;
   }
 
 }
