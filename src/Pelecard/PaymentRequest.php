@@ -91,6 +91,9 @@ class PaymentRequest implements \JsonSerializable {
   // UserData. Free text fields. These fields are not sent to SHVA. These fields return with transaction details
   protected $UserData;
 
+  // Allows us to simulate good/error response for transaction
+  protected $QAResultStatus;
+
   /**
    * Payment constructor.
    *
@@ -224,11 +227,34 @@ class PaymentRequest implements \JsonSerializable {
   }
 
   /**
+   * Allows us to simulate good/error response for transaction.
+   * Note: Should never be enabled on production!!
+   *
+   * Example:
+   * To get a success response we will send 000
+   * To get false response we will send the status code we want to simulate
+   *
+   * @param string $QAResultStatus
+   *
+   * @throws \InvalidArgumentException
+   */
+  public function setQAResultStatus($QAResultStatus) {
+    if ($QAResultStatus !== NULL && (!is_string($QAResultStatus) || preg_match("/^\d{3}$/", $QAResultStatus) !== 1)) {
+      throw new \InvalidArgumentException('Invalid `$QAResultStatus`. Data must be three-digit status code, eg \'000\' or `null` when you need to unset it');
+    }
+    $this->QAResultStatus = $QAResultStatus;
+  }
+
+  /**
    * Return JSON serialized data
    * @return array
    */
   public function jsonSerialize() {
-    return get_object_vars($this);
+    $serialized = get_object_vars($this);
+    if ($serialized['QAResultStatus'] === NULL) {
+      unset($serialized['QAResultStatus']);
+    }
+    return $serialized;
   }
 
 }
