@@ -13,11 +13,12 @@ class PaymentRequestTest extends TestCase {
    * Tests setUserData method with wrong $fieldName arguments
    *
    * @dataProvider provideWrongUserDataFieldName
-   * @expectedException InvalidArgumentException
-   * @expectedExceptionMessage Invalid `$fieldName`. Keys UserData1, UserData2, ...UserData15 are allowed
    * @covers Pelecard\PaymentRequest::setUserData
    */
   public function testSetUserDataWithWrongFieldNames($fieldName) {
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Invalid `$fieldName`. Keys UserData1, UserData2, ...UserData15 are allowed');
+
     $req = new PaymentRequest('0123456','user','qwerty','http://hostname/good.php',100);
     // fill out other UserData fields to trace any change
     for($i=1; $i<16; $i++) {
@@ -64,11 +65,12 @@ class PaymentRequestTest extends TestCase {
    * Tests setUserData method with wrong $data arguments
    *
    * @dataProvider provideWrongUserData
-   * @expectedException InvalidArgumentException
-   * @expectedExceptionMessage Invalid `$data`. Data must be string or `null` when you need to unset it
    * @covers Pelecard\PaymentRequest::setUserData
    */
   public function testSetUserDataWithWrongData($data) {
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Invalid `$data`. Data must be string or `null` when you need to unset it');
+
     $req = new PaymentRequest('0123456','user','qwerty','http://hostname/good.php',100);
     // fill out other UserData fields to trace any change
     for($i=1; $i<16; $i++) {
@@ -107,11 +109,12 @@ class PaymentRequestTest extends TestCase {
    * Tests QAResultStatus property with wrong $value
    *
    * @dataProvider provideWrongQAResultStatus
-   * @expectedException InvalidArgumentException
-   * @expectedExceptionMessage Invalid `$QAResultStatus`. Data must be three-digit status code, eg '000' or `null` when you need to unset it
    * @covers Pelecard\PaymentRequest::setQAResultStatus
    */
   public function testQAStatusCodePropertyWithWrongValue($value) {
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Invalid `$QAResultStatus`. Data must be three-digit status code, eg \'000\' or `null` when you need to unset it');
+
     $req = new PaymentRequest('0123456','user','qwerty','http://hostname/good.php',100);
     $req->setQAResultStatus($value);
   }
