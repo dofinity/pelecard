@@ -8,6 +8,11 @@ A lightweight PHP Helper Library for integrating Pelecard Iframe V2 payments.
 $ composer require dofinity/pelecard:dev-master
 ```
 
+If you need version for PHP lower than 7.2.5 use commit specific constraint:
+```shell
+$ composer require dofinity/pelecard:dev-master#e07092b
+```
+
 ## Basic usage
 
 ### Payment page setup
