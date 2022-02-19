@@ -2,8 +2,6 @@
 
 namespace Pelecard;
 
-use GuzzleHttp\Client;
-
 /**
  * Class PelecardTransaction
  * @todo Split to Factor class and service class

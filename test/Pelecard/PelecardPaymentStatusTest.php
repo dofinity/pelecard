@@ -50,7 +50,7 @@ class PelecardPaymentStatusTest extends TestCase {
    */
   public function testToStringWithCorrectParams($statusCode, $expectedMessage, $locale) {
     $status = new PelecardPaymentStatus($statusCode, $locale);
-    $this->assertInternalType('string', (string) $status);
+    $this->assertIsString((string) $status);
     $this->assertEquals($expectedMessage, (string) $status);
   }
 
